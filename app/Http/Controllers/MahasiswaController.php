@@ -7,21 +7,25 @@ use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
-    public function get() {
+    public function index() {
         $mahasiswa = Mahasiswa::orderBy('nim');
-
+        
         if(request('search')){
             $mahasiswa->where('nama', 'like', '%' . request('search') . '%');
         }
-
-        return view('data-mahasiswa', ['mahasiswa' => $mahasiswa->get()]);
+        
+        return view('index', ['mahasiswa' => $mahasiswa->paginate(5)->withQueryString()]);
     }
 
-    public function add(Request $request) {
+    public function create(){
+        return view('create');
+    }
+
+    public function store(Request $request) {
         $fields = $request->validate([
-            'nama' => ['required'],
-            'nim' => ['required'],
-            'kelas' => ['required'],
+            'nama' => 'required|',
+            'nim' => 'required|numeric',
+            'kelas' => 'required|uppercase',
         ]);
 
         Mahasiswa::create($fields);
@@ -29,21 +33,21 @@ class MahasiswaController extends Controller
         return redirect('/')->with('success', 'Data mahasiswa berhasil ditambahkan.');
     }
 
-    public function delete(Mahasiswa $mahasiswa){
+    public function destroy(Mahasiswa $mahasiswa){
         $mahasiswa->delete();
 
         return redirect('/')->with('success', 'Data mahasiswa berhasil dihapus');
     }
 
-    public function setEdit(Mahasiswa $mahasiswa){
-        return view('data-mahasiswa', ['isEdit' => true, 'emhs' => $mahasiswa, 'mahasiswa' => Mahasiswa::all()]);
+    public function edit(Mahasiswa $mahasiswa){
+        return view('edit', ['mhs' => $mahasiswa]);
     }
 
-    public function edit(Mahasiswa $mahasiswa, Request $request) {
+    public function update(Mahasiswa $mahasiswa, Request $request) {
         $fields = $request->validate([
-            'nama' => ['required'],
-            'nim' => ['required'],
-            'kelas' => ['required'],
+            'nama' => 'required|',
+            'nim' => 'required|numeric',
+            'kelas' => 'required|uppercase',
         ]);
 
         $mahasiswa->update($fields);

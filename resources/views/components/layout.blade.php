@@ -13,32 +13,18 @@
 <body class="h-full bg-gray-900">
     <div class="min-h-full">
         <main>
-            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8" x-data="{ open: false }">
+                <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">CRUD</span>
+                    Data
+                    Mahasiswa
+                </h1>
+                <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+                    Untuk memenuhi tugas E-Learning Pertemuan 12 Mata Kuliah Web Programming 2
+                </p>
                 {{ $slot }}
             </div>
         </main>
-
-        <footer class="bg-white rounded-lg shadow-sm m-4 dark:bg-gray-800">
-            <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-                    © 2025 Aridwan | 22552011189
-                </span>
-                <ul
-                    class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-                    <li>
-                        <a href="https://github.com/aridwann" target="_blank" class="hover:underline me-4 md:me-6">
-                            Github
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/aridwaannn/" target="_blank"
-                            class="hover:underline me-4 md:me-6">
-                            Instagram
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
